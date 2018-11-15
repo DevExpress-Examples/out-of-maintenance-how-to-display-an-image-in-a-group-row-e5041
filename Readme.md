@@ -1,3 +1,11 @@
+<!-- default file list -->
+*Files to look at*:
+
+* [Form1.cs](./CS/Form1.cs) (VB: [Form1.vb](./VB/Form1.vb))
+* [DataHelper.cs](./CS/Helpers/DataHelper.cs) (VB: [DataHelper.vb](./VB/Helpers/DataHelper.vb))
+* [GroupRowPaintHelper.cs](./CS/Helpers/GroupRowPaintHelper.cs) (VB: [GroupRowPaintHelper.vb](./VB/Helpers/GroupRowPaintHelper.vb))
+* [Program.cs](./CS/Program.cs) (VB: [Program.vb](./VB/Program.vb))
+<!-- default file list end -->
 # How to display an image in a group row
 
 
