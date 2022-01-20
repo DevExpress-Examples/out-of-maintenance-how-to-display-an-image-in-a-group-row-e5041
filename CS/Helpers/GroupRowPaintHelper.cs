@@ -1,4 +1,5 @@
 using DevExpress.Skins;
+using DevExpress.Utils;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
@@ -28,12 +29,16 @@ namespace dxExample {
         private static void DrawExpandButton(RowObjectCustomDrawEventArgs e, GridGroupRowInfo info, GridView view, DevExpress.LookAndFeel.UserLookAndFeel lookAndFeel) {
             Image img = GetExpandButtonImage(e, view, lookAndFeel);
             if(img == null) return;
-            info.Cache.Paint.DrawImage(e.Cache.Graphics, img, info.ButtonBounds); 
+            var imgLocation = new Point(info.ButtonBounds.Location.X + (info.ButtonBounds.Width - img.Width) / 2, info.ButtonBounds.Location.Y + (info.ButtonBounds.Height - img.Height) / 2);
+            info.Cache.Paint.DrawImage(e.Cache.Graphics, img, new Rectangle(imgLocation, img.Size)); 
         }
         private static Image GetExpandButtonImage(RowObjectCustomDrawEventArgs e, GridView view, DevExpress.LookAndFeel.UserLookAndFeel lookAndFeel) {
             var currentSkin = GridSkins.GetSkin(lookAndFeel);
             var plusMinusButton = currentSkin[GridSkins.SkinPlusMinus];
-            var images = plusMinusButton.Image.GetImages();
+
+            ImageCollection images = plusMinusButton.Image?.GetImages() ?? plusMinusButton.Glyph?.GetImages();
+            if (images == null)
+                return null;
             var rowExpanded = view.GetRowExpanded(e.RowHandle);
             var imgIndex = rowExpanded ? 1 : 0;
             var img = images.Images[imgIndex];
